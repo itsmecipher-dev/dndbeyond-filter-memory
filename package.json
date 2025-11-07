@@ -1,0 +1,26 @@
+{
+  "name": "dndbeyond-filter-memory",
+  "version": "1.1.0",
+  "description": "Chrome extension that automatically filters D&D Beyond content pages to show only sources you own",
+  "scripts": {
+    "lint": "eslint *.js",
+    "lint:fix": "eslint *.js --fix",
+    "validate": "node scripts/validate-manifest.js",
+    "package": "node scripts/create-zip.js",
+    "bump": "node scripts/bump-version.js",
+    "build": "npm run lint && npm run validate",
+    "release": "npm run build && npm run package"
+  },
+  "keywords": [
+    "dnd",
+    "dndbeyond",
+    "chrome-extension",
+    "filter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "archiver": "^7.0.1"
+  }
+}
