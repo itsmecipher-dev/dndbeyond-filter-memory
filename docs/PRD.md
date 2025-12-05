@@ -102,11 +102,9 @@ After:  https://www.dndbeyond.com/monsters?filter-cr-min=5&filter-source=148&fil
 ### Manifest V3 Requirements
 **Permissions:**
 - `storage` - sync owned sources
-- `tabs` - open sources page, reload filtered pages
-- `webNavigation` - detect page navigation
 
 **Host Permissions:**
-- `https://www.dndbeyond.com/*`
+- Specific D&D Beyond URLs only (sources, API, content pages)
 
 **Content Scripts:**
 - Match: supported page patterns

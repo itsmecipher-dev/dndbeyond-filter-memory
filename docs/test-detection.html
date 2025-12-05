@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test Source Detection</title>
+</head>
+<body>
+  <h1>Test Source Detection Logic</h1>
+
+  <!-- Simulated sources from actual D&D Beyond page -->
+  <div class="sources-listing">
+    <li class="sources-listing--item-wrapper j-collapsible__item" data-collapsible-search="br-2024|D&D Beyond Basic Rules|Sourcebook|Library">
+      <a href="sources/dnd/br-2024" class="sources-listing--item">
+        <div class="sources-listing--item--title">
+          <span class="owned-content">In Library</span>
+          D&D Beyond Basic Rules
+        </div>
+      </a>
+    </li>
+
+    <li class="sources-listing--item-wrapper j-collapsible__item" data-collapsible-search="PHB-2024|Player's Handbook|Sourcebook|">
+      <a href="sources/dnd/phb-2024" class="sources-listing--item">
+        <div class="sources-listing--item--title">
+          Player's Handbook
+        </div>
+      </a>
+    </li>
+
+    <li class="sources-listing--item-wrapper j-collapsible__item" data-collapsible-search="MM-2024|Monster Manual|Sourcebook|Library">
+      <a href="sources/dnd/mm-2024" class="sources-listing--item">
+        <div class="sources-listing--item--title">
+          <span class="owned-content">In Library</span>
+          Monster Manual
+        </div>
+      </a>
+    </li>
+  </div>
+
+  <h2>Results:</h2>
+  <pre id="results"></pre>
+
+  <script>
+    function testDetection() {
+      const ownedSlugs = [];
+      const items = document.querySelectorAll('.sources-listing--item-wrapper');
+
+      console.log(`Found ${items.length} source items`);
+      document.getElementById('results').textContent += `Found ${items.length} source items\n`;
+
+      items.forEach(item => {
+        const ownedBadge = item.querySelector('.owned-content');
+        if (ownedBadge) {
+          const link = item.querySelector('a[href*="sources/"]');
+          if (link) {
+            const href = link.getAttribute('href');
+            const slug = href.split('/').pop();
+            ownedSlugs.push(slug);
+            console.log(`Found owned source: ${slug}`);
+            document.getElementById('results').textContent += `Found owned source: ${slug}\n`;
+          }
+        }
+      });
+
+      console.log(`Total owned sources: ${ownedSlugs.length}`);
+      document.getElementById('results').textContent += `\nTotal owned sources: ${ownedSlugs.length}\n`;
+      document.getElementById('results').textContent += `Slugs: ${JSON.stringify(ownedSlugs, null, 2)}`;
+    }
+
+    // Run on load
+    testDetection();
+  </script>
+</body>
+</html>
