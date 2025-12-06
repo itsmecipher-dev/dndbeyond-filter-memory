@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0] - 2025-12-06
+
+### Added
+- **Options page for manual source selection**:
+  - Browse all available D&D Beyond sources
+  - Select/deselect sources you own
+  - Filter by source type (Sourcebook, Adventure)
+  - Search sources by name
+  - Select All / Deselect All buttons
+  - Saves selection to sync storage
+- **"Manage Sources" button in popup**:
+  - Opens the options page for manual source management
+  - Secondary action alongside auto-detection
+
+### Changed
+- Simplified popup: now shows source counts (Sourcebooks/Adventures) instead of individual cards
+- Popup now has two action buttons: Update Sources (auto-detect) and Manage Sources (manual)
+
 ## [Unreleased]
 
 ### Added

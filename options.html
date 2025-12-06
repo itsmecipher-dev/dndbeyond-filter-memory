@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D&D Beyond Filter - Source Selection</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <div class="options-header">
+      <div class="options-title">
+        <img src="icons/icon48.png" alt="D&D Beyond Filter" class="options-icon" width="48" height="48">
+        <div>
+          <h1>Source Selection</h1>
+          <p>Select the sources you own to filter content</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="options-content">
+      <div class="options-toolbar">
+        <div class="toolbar-left">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search sources...">
+        </div>
+        <div class="toolbar-right">
+          <button class="toolbar-btn" id="selectAllBtn">Select All</button>
+          <button class="toolbar-btn" id="deselectAllBtn">Deselect All</button>
+          <button class="toolbar-btn toolbar-btn--primary" id="saveBtn">Save Selection</button>
+        </div>
+      </div>
+
+      <div class="source-filters">
+        <button class="filter-btn active" data-type="all">All</button>
+        <button class="filter-btn" data-type="1">Sourcebooks</button>
+        <button class="filter-btn" data-type="2">Adventures</button>
+      </div>
+
+      <div class="sources-grid" id="sourcesGrid">
+        <div class="loading-state">Loading sources...</div>
+      </div>
+
+      <div id="emptySearch" class="empty-search">
+        <p>No sources match your search</p>
+      </div>
+    </div>
+
+    <div class="options-footer">
+      <div class="footer-stats">
+        <span id="selectedCount">0</span> sources selected
+      </div>
+      <div class="footer-note">
+        Reference sources (UA, Sage Advice) are excluded from filtering
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Settings saved!</div>
+
+  <script src="options.js"></script>
+</body>
+</html>
