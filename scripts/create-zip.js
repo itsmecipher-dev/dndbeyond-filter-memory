@@ -54,7 +54,10 @@ const filesToInclude = [
   'content-filter.js',
   'popup.html',
   'popup.css',
-  'popup.js'
+  'popup.js',
+  'options.html',
+  'options.css',
+  'options.js'
 ];
 
 console.log('📝 Including files:');
