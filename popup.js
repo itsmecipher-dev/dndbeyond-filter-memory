@@ -35,67 +35,32 @@ async function loadSettings() {
 }
 
 function displaySources(ownedIds) {
-  const sourcesList = document.getElementById('sourcesList');
-  const sourcesCount = document.getElementById('sourcesCount');
+  const sourcesSummary = document.getElementById('sourcesSummary');
+  const sourcebookCount = document.getElementById('sourcebookCount');
+  const adventureCount = document.getElementById('adventureCount');
   const emptyState = document.getElementById('emptyState');
 
-  console.log('[Popup] Displaying sources:', ownedIds);
-  console.log('[Popup] sourcesData loaded:', sourcesData.length, 'items');
-
-  sourcesCount.textContent = ownedIds.length;
-
   if (ownedIds.length === 0) {
-    sourcesList.innerHTML = '';
+    sourcesSummary.classList.add('hidden');
     emptyState.classList.add('visible');
     return;
   }
 
   emptyState.classList.remove('visible');
+  sourcesSummary.classList.remove('hidden');
 
   if (sourcesData.length === 0) {
-    console.error('[Popup] sourcesData not loaded yet!');
-    sourcesList.innerHTML = '<div style="padding: 16px; color: #718096; text-align: center;">Loading sources data...</div>';
+    sourcebookCount.textContent = '...';
+    adventureCount.textContent = '...';
     return;
   }
 
   const ownedSources = sourcesData.filter(source => ownedIds.includes(source.id));
+  const sourcebooks = ownedSources.filter(s => s.type === 1).length;
+  const adventures = ownedSources.filter(s => s.type === 2).length;
 
-  console.log('[Popup] Matched sources:', ownedSources.length);
-
-  if (ownedSources.length === 0) {
-    console.error('[Popup] No sources matched! IDs:', ownedIds);
-    sourcesList.innerHTML = '<div style="padding: 16px; color: #e63946; text-align: center;">Error: Could not match source IDs</div>';
-    return;
-  }
-
-  const getTypeLabel = (typeId) => {
-    switch(typeId) {
-      case 1: return 'Sourcebook';
-      case 2: return 'Adventure';
-      case 3: return 'Campaign Setting';
-      default: return 'Source';
-    }
-  };
-
-  sourcesList.innerHTML = ownedSources
-    .map(source => `
-      <div class="source-item" data-id="${source.id}">
-        <span class="source-icon">📖</span>
-        <div class="source-info">
-          <div class="source-name">${source.label}</div>
-          <div class="source-type">${getTypeLabel(source.type)}</div>
-        </div>
-        <button class="btn-remove" data-id="${source.id}">×</button>
-      </div>
-    `)
-    .join('');
-
-  document.querySelectorAll('.btn-remove').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const id = parseInt(e.target.dataset.id);
-      removeSource(id);
-    });
-  });
+  sourcebookCount.textContent = sourcebooks;
+  adventureCount.textContent = adventures;
 }
 
 function removeSource(idToRemove) {
@@ -145,5 +110,10 @@ function setupEventListeners() {
   const updateBtn = document.getElementById('updateSourcesBtn');
   updateBtn.addEventListener('click', () => {
     chrome.tabs.create({ url: 'https://www.dndbeyond.com/sources' });
+  });
+
+  const manageBtn = document.getElementById('manageSourcesBtn');
+  manageBtn.addEventListener('click', () => {
+    chrome.runtime.openOptionsPage();
   });
 }

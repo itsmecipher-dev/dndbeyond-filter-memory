@@ -14,7 +14,7 @@
         <img src="icons/icon48.png" alt="D&D Beyond Filter" class="popup-icon" width="48" height="48">
         <h1>artificio.io<br>D&D Beyond Owned-Sources Filter</h1>
       </div>
-      <div class="popup-version" id="popupVersion">v1.1.0</div>
+      <div class="popup-version" id="popupVersion">v1.2.0</div>
     </div>
 
     <!-- Filter Status Section -->
@@ -31,17 +31,22 @@
       </div>
     </div>
 
-    <!-- Sources Section -->
+    <!-- Sources Summary Section -->
     <div class="popup-section">
-      <h2 class="section-title">Your Sources (<span id="sourcesCount">0</span>)</h2>
-
-      <div id="sourcesList" class="sources-list"></div>
-
+      <h2 class="section-title">Your Sources</h2>
+      <div id="sourcesSummary" class="sources-summary">
+        <div class="summary-item">
+          <span class="summary-icon">📚</span>
+          <span class="summary-count" id="sourcebookCount">0</span>
+          <span class="summary-label">Sourcebooks</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-icon">🗺️</span>
+          <span class="summary-count" id="adventureCount">0</span>
+          <span class="summary-label">Adventures</span>
+        </div>
+      </div>
       <div id="emptyState" class="empty-state">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-        </svg>
         <p>No sources detected</p>
         <span>Click "Update Sources" to scan your library</span>
       </div>
@@ -57,6 +62,12 @@
             <path d="M8 4v4l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
           <span>Update Sources</span>
+        </button>
+        <button class="action-btn action-btn--secondary" id="manageSourcesBtn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Manage Sources</span>
         </button>
       </div>
     </div>
